@@ -31,4 +31,19 @@ describe Application do
         expect(response.body).to include('OK Computer')
       end 
     end 
+
+    context 'POST /albums' do
+      it 'should create a new album' do
+        response = post('/albums',
+        title: 'Voyage',
+        release_year: '2022',
+        artist_id: '2')
+
+        expect(response.status).to eq(200)
+        expect(response.body).to eq('')
+
+        response = get('/albums')
+        expect(response.body).to include('Voyage')
+      end
+    end 
 end 
